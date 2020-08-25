@@ -1,0 +1,15 @@
+{
+  "name": "nodeclase",
+  "version": "1.0.0",
+  "description": "Primer proyecto en node UdeSA II",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AJV",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.27.0",
+    "movie-quotes": "^1.0.1"
+  }
+}
