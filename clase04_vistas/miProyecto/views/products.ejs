@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head')  %>
+<body>
+    <h1>Estamos en la lista de productos.</h1> 
+    <ul>
+        <% for(let i=0; i<listaDeProductos.length; i++) { %>
+            <li>product: <%= listaDeProductos[i].nombre %> Precio: <%= listaDeProductos[i].precio %></li>
+        <% } %> 
+       
+    </ul>
+<%- include('./partials/footer')  %>
+</body>
+</html>
+
