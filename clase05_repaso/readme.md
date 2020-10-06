@@ -1,0 +1,1 @@
+Dedicamos todo el tiempo de la clase a ver dudas de la presentación para el parcial. No hubo temas nuevos ni grabación.

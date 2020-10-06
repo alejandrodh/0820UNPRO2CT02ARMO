@@ -1,0 +1,1 @@
+Clase dedicada a la primera entrega grupal del proyecto.
