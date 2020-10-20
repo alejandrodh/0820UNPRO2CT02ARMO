@@ -5,7 +5,7 @@ En el controlador de pelícualas creamos los métodos:
     - edit  
     - update  
     - destroy  
-Usamos los modelos y `sequelize` para aplicar los métodos:
+Usamos los modelos y `sequelize` para aplicar los métodos:  
     - create  
     - update  
     - destroy  
