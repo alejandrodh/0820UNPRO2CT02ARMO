@@ -1,5 +1,5 @@
 Vimos rutas por `GET` y rutas por `POST`.  
-Creamos los métodos:
+Creamos los métodos:  
     - add  
     - store  
     - edit  
