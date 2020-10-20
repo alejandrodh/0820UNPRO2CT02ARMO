@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Agregar pelicula</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>DH Movies</h1>
+    <p>Editando la película: <strong> <%= movie.title %> </strong> </p>
+    <form action="/movies/edit/<%= movie.id %>" method="POST">
+      <p>
+        <input type="text" name="title" value="<%= movie.title %>" placeholder="título">
+      </p>
+      <p>
+        <input type="text" name="rating" value="<%= movie.rating %>" placeholder="rating">
+      </p>
+      <p>
+        <input type="text" name="award" value="<%= movie.awards %>" placeholder="awards">
+      </p>
+      <p>
+        <input type="date" name="release_date" value="<%= movie.release_date %>" placeholder="fecha de estreno">
+        <br>
+        <small>Atención: si no colocan una fecha válida tendrán un error por consola y no se actualizará el dato en la db.</small>
+      </p>
+      <p>
+        <input type="text" name="length" value="<%= movie.length %>" placeholder="duración">
+      </p>
+      <p>
+        <input type="text" name="genre_id" value="<%= movie.genre_id %>" placeholder="genre_id">
+      </p>
+    
+      <button type="submit"> Actualizar película</button>
+    </form>
+    <br>
+    <a href="/movies">Volver al listado</a>
+  </body>
+</html>

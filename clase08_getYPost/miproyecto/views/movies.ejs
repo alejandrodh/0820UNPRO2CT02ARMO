@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peliculas</title>
+</head>
+<body>
+  <h2>Menú</h2>
+  <nav>
+    <ul>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/movies">Todas las películas</a>
+      </li>
+      <li>
+        <a href="/movies/create">Agregar película</a>
+      </li>
+    </ul>
+  </nav>
+
+  <h2>Buscador</h2>
+  <form action="/movies/search" method="GET">
+    <input type="text" name="search" placeholder="Títutlo a buscar" value="">
+    <button type="submit">Buscar</button>
+  </form>
+  <h1>Listado de peliculas</h1>
+  <ul>
+    <% for(let i=0; i<resultados.length; i++){ %>
+      <li>
+         <a href="/movies/detalle/<%= resultados[i].id %>"> <%= resultados[i].title %> </a> 
+      </li>
+    <% } %> 
+  </ul>
+</body>
+</html>
