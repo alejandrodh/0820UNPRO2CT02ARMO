@@ -1,5 +1,5 @@
 Vimos rutas por `GET` y rutas por `POST`.  
-Creamos los métodos:  
+En el controlador de pelícualas creamos los métodos:  
     - add  
     - store  
     - edit  
