@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle</title>
+</head>
+<body>
+  <h2>Menú</h2>
+  <nav>
+    <ul>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/movies">Todas las películas</a>
+      </li>
+    </ul>
+  </nav>
+  <h1>Detalle de la película</h1>
+  <h2> <%= resultados.title %>  </h2>
+  <!-- La forma correcta de hacerlo es con una etiqueta <a></a> -->
+  <!-- <form action="/movies/edit/<%= //resultados.id %>" method="GET">
+    <button type="submit">Editar</button>
+  </form> -->
+  <p>
+    <a href="/movies/edit/<%= resultados.id %>"> Editar</a>
+  </p>
+  <form action="/movies/detalle/<%= resultados.id %>" method="POST">
+    <button type="submit">Borrar</button>
+  </form>
+
+  
+</body>
+</html>

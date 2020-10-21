@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Agregar pelicula</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>DH Movies</h1>
+    <p>Cargar una nueva película</p>
+    <form action="/movies/create" method="POST">
+      <p>
+        <input type="text" name="title" value="" placeholder="título">
+      </p>
+      <p>
+        <input type="number" name="rating" value="" placeholder="rating">
+      </p>
+      <p>
+        <input type="number" name="award" value="" placeholder="awards">
+      </p>
+      <p>
+        <input type="date" name="release_date" value="" placeholder="fecha de estreno">
+      </p>
+      <p>
+        <input type="number" name="length" value="" placeholder="duración">
+      </p>
+      <p>
+        <select name="genre_id" id="">
+          <% for(let i=0; i<genres.length; i++) { %> 
+            <option value="<%= genres[i].id %>"> <%= genres[i].name %></option>
+          <% }  %> 
+        </select>
+      </p>
+    
+      <button type="submit"> Guardar película</button>
+    </form>
+  </body>
+</html>
