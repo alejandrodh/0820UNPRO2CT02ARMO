@@ -23,13 +23,16 @@
   <!-- <form action="/movies/edit/<%= //resultados.id %>" method="GET">
     <button type="submit">Editar</button>
   </form> -->
+  <% if(locals.user){ %> 
   <p>
     <a href="/movies/edit/<%= resultados.id %>"> Editar</a>
   </p>
   <form action="/movies/detalle/<%= resultados.id %>" method="POST">
     <button type="submit">Borrar</button>
   </form>
-
+<% } else { %>
+  <p>Solo los usuarios logueados pueden editar y/o borrar películas</p>
+<% } %>  
   
 </body>
 </html>
