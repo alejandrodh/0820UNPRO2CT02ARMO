@@ -6,7 +6,11 @@ const op = db.Sequelize.Op;
 
 let loginController = {
     index: function(req, res){
-        return res.render('login');
+        if(req.session.user != undefined ){
+            return res.redirect('/')
+        } else {
+            return res.render('login');
+        }        
     },
         
     login: function(req, res){
@@ -24,9 +28,17 @@ let loginController = {
                 return res.send("Contraseña equivocada")
             } else if (bcrypt.compareSync(req.body.password, user.password)){
                 //Coinciden las contraseñas
-                req.session.user = user
+                req.session.user = user;
+
+                if(req.body.rememberme != undefined){
+                    res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5 });
+                    return res.redirect('/');
+                }
+
                 return res.redirect('/');
             }
+            
+            return res.redirect('/');
             
         })
         .catch( e => console.log(e))
