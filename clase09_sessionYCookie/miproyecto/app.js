@@ -4,12 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
+var db = require('./database/models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
+const { RSA_NO_PADDING } = require('constants');
 
 var app = express();
 
@@ -30,12 +32,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Sirve para hacer cosas en todas las vistas.
 app.use(function(req, res, next){
+  console.info("====== si sessión. Primer middleware: ", req.session.user != undefined);
   if(req.session.user != undefined){
     //locals me deja disponible datos en todas las vistas.
     res.locals.user = req.session.user
+    return next();
   }
     return next();
 })
+
+//Revisar cookie recordame
+// app.use(function(req, res, next){
+//   // return res.send(req.cookies);
+//   console.info("===== si cookie y no session. 2do midd: ",req.cookies.userId != undefined && req.session.user == undefined)
+//   if(req.cookies.userId != undefined && req.session.user == undefined){
+//     //Buscar al usuario en la db
+//     db.User.findByPk(req.cookies.userId)
+//       .then(function(user){
+//         //Lo cargamos en la session
+//         req.session.user = user;
+//         //res.redirect(req.originalUrl)
+//         return next();
+//       })
+//       .catch(e => console.log(e))
+//   }
+
+//   return next();
+// })
 
 
 app.use('/', indexRouter);
