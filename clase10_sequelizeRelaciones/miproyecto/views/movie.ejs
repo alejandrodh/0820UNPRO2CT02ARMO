@@ -19,13 +19,18 @@
   </nav>
   <h1>Detalle de la película</h1>
   <h2> <%= resultados.title %>  </h2>
-  <p>Género: <%=resultados.genre.name %></p>
+
+  <% if(resultados.genre != null) { %> 
+  <p>Género: <%= resultados.genre.name %></p>
+  <% } else { %>
+    <p>La película no tiene género asociado</p>
+  <% } %> 
+  
   <h4> Actores</h4>
   <ul class="lista">
-    <% for(let i = 0; i<resultados.actors.length; i++){ %>
-      <li><%= resultados.actors[i].last_name%>, <%= resultados.actors[i].first_name %></li>
+    <% for(let i=0; i<resultados.actors.length; i++) {%> 
+      <li> <%= resultados.actors[i].first_name %>, <%= resultados.actors[i].last_name%> </li>
     <% } %> 
-
   </ul>
   <!-- La forma correcta de hacerlo es con una etiqueta <a></a> -->
   <!-- <form action="/movies/edit/<%= //resultados.id %>" method="GET">

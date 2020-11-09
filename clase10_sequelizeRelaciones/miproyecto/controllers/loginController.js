@@ -32,7 +32,10 @@ let loginController = {
 
                 if(req.body.rememberme != undefined){
                     res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5 });
+                    return res.redirect('/');
                 }
+
+                return res.redirect('/');
             }
             
             return res.redirect('/');

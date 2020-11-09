@@ -41,13 +41,14 @@ app.use(function(req, res, next){
     return next();
 })
 
+
 //Revisar cookie recordame
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   // return res.send(req.cookies);
-  if(req.cookies.userId != undefined && req.session.user == undefined){
+  if (req.cookies.userId != undefined && req.session.user == undefined) {
     //Buscar al usuario en la db
     db.User.findByPk(req.cookies.userId)
-      .then(function(user){
+      .then(function (user) {
         //Lo cargamos en la session
         req.session.user = user;
         res.locals.user = user;

@@ -25,10 +25,10 @@ let moviesController = {
         let primaryKey = req.params.id;
 
         movie.findByPk(primaryKey, {
-            include: [{ association: 'genre' }, { association: 'actors' } ]
+            include: [ {association: 'genre'}, {association: 'actors'} ]
         })
             .then( function (resultados){
-                // return res.send(resultados)
+                //  return res.send(resultados)
                 return res.render('movie', { resultados });
             })
             .catch(function (error) {

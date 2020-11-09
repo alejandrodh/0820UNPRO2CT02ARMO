@@ -1,6 +1,6 @@
 module.exports = function (sequelize, dataTypes){
 
-    let alias = 'Genre'; //Este alias se busca como nombre en de la tabla en plural dentro de la base de datos.
+    let alias = 'Actor'; //Este alias se busca como nombre en de la tabla en plural dentro de la base de datos.
 
     let cols = {
         id: {
@@ -16,13 +16,16 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.DATE,
             allowNull: true,
         },
-        name: {
+        first_name: {
             type: dataTypes.STRING
         },
-        ranking: {
-            type: dataTypes.INTEGER
+        last_name: {
+            type: dataTypes.STRING
         },
-        active: {
+        rating: {
+            type: dataTypes.DECIMAL
+        },
+        favorite_movie_id: {
             type: dataTypes.INTEGER
         }
 
@@ -34,18 +37,18 @@ module.exports = function (sequelize, dataTypes){
         // underscored: true, //Aclareción en caso que los timestamps usen guiones bajos en lugar de camelCase.
     };
 
-    const Genre = sequelize.define(alias, cols, config);
+    const Actor = sequelize.define(alias, cols, config);
 
-    Genre.associate = function (models) {
-        Genre.hasMany(
-            models.Movie, {
+    Actor.associate = function(models){
+        Actor.belongsToMany(models.Movie, {
             as: 'movies',
-            foreignKey: 'genre_id'
-        }
-        )
-
+            through: 'actor_movie',
+            foreignKey: 'actor_id',
+            otherKey: 'movie_id',
+            timestamps: false,
+        })
     }
 
-    return Genre;
+    return Actor;
 
 }
