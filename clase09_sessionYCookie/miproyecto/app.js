@@ -32,11 +32,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Sirve para hacer cosas en todas las vistas.
 app.use(function(req, res, next){
-  console.info("====== si sessión. Primer middleware: ", req.session.user != undefined);
+  // console.info("====== si sessión. Primer middleware: ", req.session.user != undefined);
   if(req.session.user != undefined){
     //locals me deja disponible datos en todas las vistas.
     res.locals.user = req.session.user
-    return next();
+    return next();//Chequear
   }
     return next();
 })
