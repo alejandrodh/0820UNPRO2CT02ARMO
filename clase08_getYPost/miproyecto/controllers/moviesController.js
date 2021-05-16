@@ -69,9 +69,14 @@ let moviesController = {
             genre_id: req.body.genre_id,
         }
 
-        db.Movie.create(movie);
-
-        return res.redirect('/movies');
+        db.Movie.create(movie)
+            .then( () => {
+                return res.redirect('/movies');        
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+        
     },
     edit: function(req, res){
         let idAeditar = req.params.id;
