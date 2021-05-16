@@ -42,7 +42,7 @@ app.use(function(req, res, next){
 })
 
 
-//Revisar cookie recordame
+//Cookie recordame funcionando
 app.use(function (req, res, next) {
   // return res.send(req.cookies);
   if (req.cookies.userId != undefined && req.session.user == undefined) {
