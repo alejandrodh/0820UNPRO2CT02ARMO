@@ -6,11 +6,13 @@ const op = db.Sequelize.Op;
 
 let registerController = {
     index: function(req, res){
-        if (req.session.user != undefined) {
-            return res.redirect('/')
-        } else {
+         //Sacamos control de acceso. Lo vemos en la próxima clase.
+        // if (req.session.user != undefined) {
+        //     return res.redirect('/')
+        // } else {
+        // return res.render('register');
+        // }
         return res.render('register');
-        }
     },
         
     store: function(req, res){

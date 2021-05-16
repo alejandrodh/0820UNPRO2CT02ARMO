@@ -4,9 +4,9 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <% if(locals.user){ %> 
-    <h2>Hola: <%= locals.user.name %>  </h2>
+  <body> 
+    <% if(locals.name){ //Para que no rompa preguntamos por alguna de las propiedades del usuario%> 
+    <h2>Hola: <%= locals.name %>  </h2>
     <form action="/login/logout" method="POST">
       <button type="submit">Logout</button>
     </form>

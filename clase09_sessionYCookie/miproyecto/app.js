@@ -29,16 +29,17 @@ app.use(session(
 ));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Sirve para hacer cosas en todas las vistas.
+//Sirve para pasar info en todas las vistas.
 app.use(function(req, res, next){
   // console.info("====== si sessión. Primer middleware: ", req.session.user != undefined);
   if(req.session.user != undefined){
     //locals me deja disponible datos en todas las vistas.
-    res.locals.user = req.session.user
+    res.locals = req.session.user
+    console.log(res.locals);
     return next();//Chequear
   }
     return next();
-})
+});
 
 //Revisar cookie recordame
 app.use(function(req, res, next){
@@ -49,7 +50,7 @@ app.use(function(req, res, next){
       .then(function(user){
         //Lo cargamos en la session
         req.session.user = user;
-        res.locals.user = user;
+        res.locals = user;
         // res.redirect(req.originalUrl)
         return next();//Permite continuar el flujo cuando se resuelve la promesa
       })
@@ -58,7 +59,7 @@ app.use(function(req, res, next){
     return next(); //Encapsularlo acá hace que solo se ejecute si falla el if.
   }
 
-})
+});
 
 
 app.use('/', indexRouter);
