@@ -34,8 +34,8 @@ let loginController = {
                 res.locals.errors = errors;
                 
                 return res.render('login');
-            } else if (bcrypt.compareSync(req.body.password, user.password)){
-                //Coinciden las contraseñas
+            } else {
+                //El email existe y coinciden las contraseñas
                 req.session.user = user;
 
                 if(req.body.rememberme != undefined){
