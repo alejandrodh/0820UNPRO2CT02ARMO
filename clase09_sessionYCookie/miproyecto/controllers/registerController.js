@@ -40,7 +40,7 @@ let registerController = {
             return res.render('register');
             //3 Si los campos obligatorios están todos con datos entonces validamos si el email está libre en la db.
         } else {
-            //El email no debe estar en la db. Para ello consultamos si hay un usuario con ese email.
+            //Descartado que los campos tienen datos ahora debenos chequear que el email no estñe en la db. Para ello consultamos si hay un usuario con ese email.
             users.findOne({
                 where: [{ email : req.body.email }]
              })
