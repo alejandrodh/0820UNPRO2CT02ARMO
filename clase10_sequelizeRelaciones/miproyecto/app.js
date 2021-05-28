@@ -11,7 +11,6 @@ var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
-const { RSA_NO_PADDING } = require('constants');
 
 var app = express();
 
