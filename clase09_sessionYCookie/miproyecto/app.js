@@ -34,7 +34,7 @@ app.use(function(req, res, next){
   // console.info("====== si sessión. Primer middleware: ", req.session.user != undefined);
   if(req.session.user != undefined){
     //locals me deja disponible datos en todas las vistas.
-    res.locals = req.session.user
+    res.locals.user = req.session.user
     console.log(res.locals);
     return next();//Chequear
   }
@@ -50,7 +50,7 @@ app.use(function(req, res, next){
       .then(function(user){
         //Lo cargamos en la session
         req.session.user = user;
-        res.locals = user;
+        res.locals.user = user;
         // res.redirect(req.originalUrl)
         return next();//Permite continuar el flujo cuando se resuelve la promesa
       })

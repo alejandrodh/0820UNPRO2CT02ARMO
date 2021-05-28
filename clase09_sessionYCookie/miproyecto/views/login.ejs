@@ -6,6 +6,10 @@
   </head>
   <body>
     <h1>Ingresar</h1>
+
+    <% if(locals.errors){  %> 
+      <p style="color:red"> <%= errors.register %> </p>
+    <% } %> 
     
     <form action="/login" method="POST">
       <p>
