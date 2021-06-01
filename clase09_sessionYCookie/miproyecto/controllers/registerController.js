@@ -21,23 +21,22 @@ let registerController = {
         //2 chequeamos que los campos obligatorios traigan datos
         //2.1 que el email no venga vacío:
         if(req.body.email == ""){
-            errors.register = "Email no puede estar vacío.";
+            errors.message = "Email no puede estar vacío.";
             res.locals.errors = errors;
-
             return res.render('register');
 
         } else if (req.body.password == ""){
             //2.2 chequeamos que el password no venga vacío:
-            errors.register = "Password no puede estar vacío";
+            errors.message = "Password no puede estar vacío";
             res.locals.errors = errors;
-
             return res.render('register');
+
         } else if (req.body.retypePassword == ""){
             //2.3 chequeamos que el retypepassword no venga vacío:
-            errors.register = "Retype Password no puede estar vacío";
+            errors.message = "Retype Password no puede estar vacío";
             res.locals.errors = errors;
-
             return res.render('register');
+
             //3 Si los campos obligatorios están todos con datos entonces validamos si el email está libre en la db.
         } else {
             //Descartado que los campos tienen datos ahora debenos chequear que el email no estñe en la db. Para ello consultamos si hay un usuario con ese email.
@@ -47,16 +46,16 @@ let registerController = {
                 .then( function(user){
                     //3.1 Si el find devuelve un usuario es que el email ya existe
                     if(user !== null){ 
-                        errors.register = "Email ya existe elija otro.";
+                        errors.message = "Email ya existe elija otro.";
                         res.locals.errors = errors;
-                        
                         return res.render('register');
+
                     } else if (req.body.password != req.body.retypePassword){ 
                         //3.2 Si el find devuelve null podemos chequear so las contraseñas coinciden 
-                        errors.register = "Las contreseñas no coinciden";
+                        errors.message = "Las contreseñas no coinciden";
                         res.locals.errors = errors;
-                        
                         return res.render('register');
+
                     } else { 
                         //Si el email no existe y las contraseñas coinciden, guardamos al user y redireccionamos a login para que se registre.
                         let user = {

@@ -26,16 +26,16 @@ let loginController = {
             
             //2.1 El email no está en la base de datos
             if(user == null){
-                errors.login = "Email incorrecto";
-                res.locals.errors = errors;
-                
+                errors.message = "Email incorrecto";
+                res.locals.errors = errors;               
                 return res.render('login');
+
             } else if (bcrypt.compareSync(req.body.password, user.password) == false ){
                 //2.2 EL email existe pero la contraseña está mal
-                errors.login = "Contraseña equivocada";
+                errors.message = "Contraseña equivocada";
                 res.locals.errors = errors;
-                
                 return res.render('login');
+
             } else {
                 //2.3 El email existe y coinciden las contraseñas
                 req.session.user = user;
