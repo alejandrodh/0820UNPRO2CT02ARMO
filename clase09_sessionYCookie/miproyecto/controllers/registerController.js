@@ -37,6 +37,10 @@ let registerController = {
             res.locals.errors = errors;
             return res.render('register');
 
+        } else if( req.file.mimetype !== 'image/png' || req.file.mimetype !== 'image/jpg'){
+            errors.message = "El archov debe ser de tipo jpg o png.";
+            res.locals.errors = errors;
+            return res.render('register');
             //3 Si los campos obligatorios están todos con datos entonces validamos si el email está libre en la db.
         } else {
             //Descartado que los campos tienen datos ahora debenos chequear que el email no estñe en la db. Para ello consultamos si hay un usuario con ese email.
@@ -74,8 +78,57 @@ let registerController = {
                 })
                 .catch( e => console.log(e))
             }
-
     },
+
+    edit: function(req, res){ //Render de form 
+        let id = req.params.id;
+        
+        //Validar que solo lo pueda acceder el usuario dueño de su perfil
+        if(id != req.session.user.id){
+            //Si cambian el id a mano en la url lo redirigimos a su perfil otra vez.
+            return res.redirect(`/register/edit/${req.session.user.id}`);
+        } else {
+            db.User.findByPk(id)
+                .then( function(user){
+                    return res.render('userEdit', { userEdit: user })
+                })
+                .catch(e=>{console.log(e)})
+        }
+        
+    },
+
+    update: function(req, res){
+        let user = {
+            name: req.body.name,  //Si lo cambia loa actualizamos
+            email: req.body.email, //No lo debería cambiar. Si lo hace hay que controlar que no se repita.
+            password: '',
+            avatar: ''
+        }        
+        //Tenemos que completar password y avatar dependiendo de lo que venga en el form
+        if(req.body.password == ''){
+            user.password = req.session.user.password;
+        } else {
+            user.password = bcrypt.hashSync(req.body.password, 10);
+        }
+        if (req.file == undefined) {
+            user.avatar = req.session.user.avatar
+        } else {
+            user.avatar = req.file.filename 
+        }
+
+        db.User.update(user, {
+            where: {
+                id: req.session.user.id
+            }
+        })
+            .then( function(id){
+                //Si queremos que la info cambie apenas termina de actualizar hay que recargar el user en session. Ojo que hay que completar el objeto user con el id.
+                user.id = req.session.user.id
+                req.session.user = user;                
+                return res.redirect('/')
+            })
+            .catch( e => { console.log(e);})
+    }
     
 }
 

@@ -10,7 +10,6 @@ var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
-const { RSA_NO_PADDING } = require('constants');
 
 var app = express();
 
@@ -35,7 +34,9 @@ app.use(function(req, res, next){
   if(req.session.user != undefined){
     //locals me deja disponible datos en todas las vistas.
     res.locals.user = req.session.user
+    console.log('De middleware session');
     console.log(res.locals);
+    console.log('=======================');
     return next();//Chequear
   }
     return next();

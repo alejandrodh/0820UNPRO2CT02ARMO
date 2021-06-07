@@ -6,7 +6,8 @@
   </head>
   <body> 
     <% if(locals.user){ //Para que no rompa preguntamos por alguna de las propiedades del usuario%> 
-    <img src="/images/avatar/<%=user.avatar%> " alt=""><h2> <%= user.name %>  </h2>
+    <img class="avatar" src="/images/avatar/<%=user.avatar%> " alt=""><h2> <%= user.name %>  </h2>
+    <p><a href="/register/edit/<%=user.id%>">editar perfil</a></p>
     <form action="/login/logout" method="POST">
       <button type="submit">Logout</button>
     </form>

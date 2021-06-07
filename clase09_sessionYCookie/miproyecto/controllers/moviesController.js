@@ -92,7 +92,7 @@ let moviesController = {
         let idAActulizar = req.params.id;
 
         let pelicualAActualizar = req.body
-        // return res.send(pelicualAActualizar);
+        //  return res.send(pelicualAActualizar);
         db.Movie.update(
             pelicualAActualizar,
         {
@@ -100,8 +100,11 @@ let moviesController = {
                 id: idAActulizar
             } 
         })
+        .then(function(){
+            return res.redirect('/movies');
+        })
+        .catch(e=>{console.log(e);})
 
-        return res.redirect('/movies');
     },
 
     destroy: function(req, res){
